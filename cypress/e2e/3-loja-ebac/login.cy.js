@@ -7,7 +7,7 @@ describe('Funcionalidade: Login', () => {
     })
 
     afterEach(() => {
-        cy.screenshot()
+        //cy.screenshot()
     })
 
     it('Deve fazer login com sucesso', () => {
@@ -49,8 +49,12 @@ describe('Funcionalidade: Login', () => {
             cy.get('#password').type(dados.senha, { log: false })
             cy.get('.woocommerce-form > .button').click()
             cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, teste-0999')
-
         })
-
     })
+
+    it.only('Deve fazer login com sucesso - usando comando customizado', () => {
+        cy.login('teste@testando.com', '12345678')
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, teste-0999')
+    })
+
 })
